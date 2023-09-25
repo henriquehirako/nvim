@@ -65,6 +65,7 @@ vim.cmd [[set autoindent]]
 vim.cmd [[set smarttab]]
 vim.cmd [[set expandtab]]
 vim.cmd [[set spell spelllang=en_us]]
+vim.cmd [[set nospell]]
 
 -----------------
 -- Searching
