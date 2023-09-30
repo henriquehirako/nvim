@@ -29,7 +29,7 @@ require('github-theme').setup({
     darken = {                 -- Darken floating windows and sidebar-like windows
       floats = false,
       sidebars = {
-        enabled = true,
+        enabled = false,
         list = {},             -- Apply dark background to specific windows
       },
     },
@@ -37,13 +37,14 @@ require('github-theme').setup({
       -- ...
     },
   },
-  palettes = { },
+  palettes = {},
   specs = {},
   groups = {
     all = {
-      CursorLine = { bg = "bg1" }
+      CursorLine  = { bg = "none" },
     }
   },
 })
 
-vim.cmd [[colorscheme github_dark_tritanopia]]
+-- require('github-theme').compile()
+vim.cmd [[colorscheme github_dark_dimmed]]
