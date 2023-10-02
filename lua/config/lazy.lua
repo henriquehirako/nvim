@@ -36,6 +36,7 @@ require("lazy").setup({
 
   -- Focus mode
   { "shortcuts/no-neck-pain.nvim", version = "*" },
+  { "ecthelionvi/NeoColumn.nvim", opts = {} }, -- only change the background color of lines going over limit
 
   -- Languages and Frameworks support
   { 'tpope/vim-rails',     ft = 'ruby' },
@@ -43,7 +44,6 @@ require("lazy").setup({
   { 'noprompt/vim-yardoc', ft = 'ruby' },
 
   -- COLORS
-  -- 'ayu-theme/ayu-vim',
   { "projekt0n/github-nvim-theme", lazy = false, priority = 1000 },
 
   -- Miscellaneous

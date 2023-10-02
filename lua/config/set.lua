@@ -21,7 +21,8 @@ vim.cmd [[set title]]           -- Set the title of the window in the terminal t
 vim.cmd [[set ttyfast]]         -- higher refresh rate"
 vim.cmd [[set lazyredraw]]      -- buffer screen updates"
 vim.cmd [[set nowrap]]          -- Line wrapping off
-vim.cmd [[set colorcolumn=120]] -- Color the 120th column differently as a wrapping guide.
+-- SET by neo-column.vim instead
+-- vim.cmd [[set colorcolumn=120]] -- Color the 120th column differently as a wrapping guide.
 
 ------------------
 -- Behaviors
