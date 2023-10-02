@@ -5,4 +5,3 @@
 ```bash
 git clone git@github.com:henriquehirako/nvim.git ~/.config/nvim
 ```
-
