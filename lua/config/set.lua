@@ -21,7 +21,7 @@ vim.cmd [[set title]]           -- Set the title of the window in the terminal t
 vim.cmd [[set ttyfast]]         -- higher refresh rate"
 vim.cmd [[set lazyredraw]]      -- buffer screen updates"
 vim.cmd [[set nowrap]]          -- Line wrapping off
--- SET by neo-column.vim instead
+-- SET by neo-column.nvim instead
 -- vim.cmd [[set colorcolumn=120]] -- Color the 120th column differently as a wrapping guide.
 
 ------------------
@@ -125,5 +125,5 @@ vim.cmd [[filetype indent on]]    -- Enable filetype-specific indenting
 vim.cmd [[filetype plugin on]]    -- Enable filetype-specific plugins
 
 vim.cmd [[autocmd Filetype ruby setlocal ts=2 sw=2 expandtab]]
-vim.cmd [[autocmd Filetype markdown setlocal colorcolumn=92]] -- Github limit
+-- vim.cmd [[autocmd Filetype markdown setlocal colorcolumn=92]] -- Github limit
 vim.cmd [[autocmd BufReadPost *.yaml.tpl set syntax=yaml]]
