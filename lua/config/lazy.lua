@@ -42,6 +42,22 @@ require("lazy").setup({
   { 'tpope/vim-rails',     ft = 'ruby' },
   { 'vim-ruby/vim-ruby',   ft = 'ruby' },
   { 'noprompt/vim-yardoc', ft = 'ruby' },
+  { 'towolf/vim-helm' },
+
+  -- cmp pluggins
+  'hrsh7th/nvim-cmp',
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-path',
+  'hrsh7th/cmp-cmdline',
+  'hrsh7th/cmp-nvim-lsp',
+
+  -- LSP
+  'neovim/nvim-lspconfig',
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
+
+  -- Linter
+  'dense-analysis/ale',
 
   -- COLORS
   { "projekt0n/github-nvim-theme", lazy = false, priority = 1000 },
