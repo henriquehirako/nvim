@@ -61,6 +61,8 @@ require("lazy").setup({
 
   -- COLORS
   { "projekt0n/github-nvim-theme", lazy = false, priority = 1000 },
+  { "tinted-theming/base16-vim", },
+  { "jeffkreeftmeijer/vim-dim", },
 
   -- Miscellaneous
   'github/copilot.vim'
