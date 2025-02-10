@@ -68,6 +68,8 @@ vim.cmd [[set expandtab]]
 vim.cmd [[set spell spelllang=en_us]]
 vim.cmd [[set nospell]]
 
+vim.g.editorconfig = true
+
 -----------------
 -- Searching
 -----------------

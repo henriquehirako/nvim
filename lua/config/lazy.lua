@@ -42,6 +42,7 @@ require("lazy").setup({
   { 'tpope/vim-rails',     ft = 'ruby' },
   { 'vim-ruby/vim-ruby',   ft = 'ruby' },
   { 'noprompt/vim-yardoc', ft = 'ruby' },
+  { 'fatih/vim-go',        ft = 'go' },
   { 'towolf/vim-helm' },
 
   -- cmp pluggins
@@ -65,6 +66,7 @@ require("lazy").setup({
   { "jeffkreeftmeijer/vim-dim", },
 
   -- Miscellaneous
-  'github/copilot.vim'
+  -- 'github/copilot.vim',
+  'Exafunction/codeium.vim'
 }, {})
 

@@ -5,13 +5,16 @@ vim.cmd [[
 ]]
 vim.cmd [[let g:ale_completion_enabled = 0]]
 vim.cmd [[let g:ale_emit_conflict_warnings = 0]]
+vim.cmd [[let g:ale_use_neovim_diagnostics_api = 1]]
 vim.cmd [[
   let g:ale_fixers = {
   \   'javascript': ['eslint'],
   \   'scss': ['stylelint'],
   \   'css': ['stylelint'],
+  \   'go': ['gofmt'],
   \   'solidity': ['solium'],
   \   'ruby': ['rubocop'],
+  \   'sql': ['pgformatter'],
   \}
 ]]
 vim.cmd [[
@@ -19,6 +22,7 @@ vim.cmd [[
   \   'javascript': ['eslint'],
   \   'scss': ['stylelint'],
   \   'css': ['stylelint'],
+  \   'go': ['gofmt'],
   \   'solidity': ['solium'],
   \   'php': ['php'],
   \   'ruby': ['rails_best_practices', 'rubocop', 'reek'],
