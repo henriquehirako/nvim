@@ -66,7 +66,7 @@ require("lazy").setup({
   { "jeffkreeftmeijer/vim-dim", },
 
   -- Miscellaneous
-  -- 'github/copilot.vim',
-  'Exafunction/codeium.vim'
+  'github/copilot.vim',
+  -- 'Exafunction/codeium.vim'
 }, {})
 
