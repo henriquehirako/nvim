@@ -3,11 +3,40 @@ require("mason-lspconfig").setup({
   ensure_installed = { "lua_ls", "ruby_lsp", "rubocop", "eslint", "helm_ls", "pyright", "gopls", "tailwindcss" },
 })
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
-lspconfig.ruby_lsp.setup({})
-lspconfig.gopls.setup({})
-lspconfig.lua_ls.setup({})
-
+lspconfig.ruby_lsp.setup({
+  capabilities = capabilities,
+  cmd_env = { BUNDLE_GEMFILE = vim.fn.getenv('GLOBAL_GEMFILE') },
+})
+lspconfig.rubocop.setup({
+  capabilities = capabilities,
+  cmd_env = { BUNDLE_GEMFILE = vim.fn.getenv('GLOBAL_GEMFILE') },
+})
+lspconfig.gopls.setup({ capabilities = capabilities })
+lspconfig.lua_ls.setup({
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = "LuaJIT",
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { "vim" },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true), 
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+})
 
 -- Set up diagnostics to show in the current line.
 vim.diagnostic.config( {
