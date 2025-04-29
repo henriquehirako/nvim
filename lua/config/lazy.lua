@@ -52,7 +52,7 @@ require("lazy").setup({
   'hrsh7th/cmp-cmdline',
   'hrsh7th/cmp-nvim-lsp',
   'onsails/lspkind.nvim',
-  'zbirenbaum/copilot-cmp',
+  -- 'zbirenbaum/copilot-cmp',
 
   -- LSP
   'neovim/nvim-lspconfig',
@@ -68,9 +68,9 @@ require("lazy").setup({
   { "jeffkreeftmeijer/vim-dim", },
 
   -- Miscellaneous
-  'zbirenbaum/copilot.lua',
+  -- 'zbirenbaum/copilot.lua',
 
   -- 'github/copilot.vim',
-  -- 'Exafunction/codeium.vim'
+  'Exafunction/codeium.vim'
 }, {})
 
