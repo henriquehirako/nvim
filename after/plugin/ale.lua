@@ -9,6 +9,7 @@ vim.cmd [[let g:ale_use_neovim_diagnostics_api = 1]]
 vim.cmd [[
   let g:ale_fixers = {
   \   'javascript': ['eslint'],
+  \   'typescript': ['eslint'],
   \   'scss': ['stylelint'],
   \   'css': ['stylelint'],
   \   'go': ['gofmt'],
@@ -20,6 +21,7 @@ vim.cmd [[
 vim.cmd [[
   let g:ale_linters = {
   \   'javascript': ['eslint'],
+  \   'typescript': ['eslint'],
   \   'scss': ['stylelint'],
   \   'css': ['stylelint'],
   \   'go': ['gofmt'],

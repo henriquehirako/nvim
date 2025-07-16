@@ -44,6 +44,11 @@ require("lazy").setup({
   { 'noprompt/vim-yardoc', ft = 'ruby' },
   { 'fatih/vim-go',        ft = 'go' },
   { 'towolf/vim-helm' },
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
+  },
 
   -- cmp pluggins
   'hrsh7th/nvim-cmp',

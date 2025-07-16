@@ -1,6 +1,9 @@
-require('nvim-treesitter.configs').setup {
+local status, ts = pcall(require, "nvim-treesitter.configs")
+if (not status) then return end
+
+ts.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "lua", "vim", "markdown", "vimdoc", "query", "ruby", "javascript", "typescript" },
+  ensure_installed = { "lua", "vim", "markdown", "vimdoc", "query", "ruby", "javascript", "typescript", "tsx", "json" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = true,
@@ -16,6 +19,14 @@ require('nvim-treesitter.configs').setup {
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = true,
+    -- additional_vim_regex_highlighting = true,
+    additional_vim_regex_highlighting = false,
   },
+
+  autotag = {
+    enable = true,
+  }
 }
+
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
