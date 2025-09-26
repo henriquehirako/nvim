@@ -1,29 +1,20 @@
-require("mason").setup()
-require("mason-lspconfig").setup({
-  ensure_installed = {
-    "lua_ls",
-    "ruby_lsp",
-    "rubocop",
-    "eslint",
-    "helm_ls",
-    "pyright",
-    "gopls",
-    "tailwindcss"
-  },
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+vim.lsp.config('ruby_lsp', {
+  capabilities = capabilities,
+  -- cmd_env = { BUNDLE_GEMFILE = vim.fn.getenv('GLOBAL_GEMFILE') },
+  cmd = { vim.fn.expand("~/.rbenv/shims/ruby-lsp") },
 })
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local lspconfig = require('lspconfig')
-lspconfig.ruby_lsp.setup({
+vim.lsp.config('rubocop', {
   capabilities = capabilities,
-  cmd_env = { BUNDLE_GEMFILE = vim.fn.getenv('GLOBAL_GEMFILE') },
+  -- cmd_env = { BUNDLE_GEMFILE = vim.fn.getenv('GLOBAL_GEMFILE') },
+  cmd = { vim.fn.expand("~/.rbenv/shims/rubocop"), "--lsp" },
 })
-lspconfig.rubocop.setup({
-  capabilities = capabilities,
-  cmd_env = { BUNDLE_GEMFILE = vim.fn.getenv('GLOBAL_GEMFILE') },
-})
-lspconfig.gopls.setup({ capabilities = capabilities })
-lspconfig.lua_ls.setup({
+
+vim.lsp.config('gopls', { capabilities = capabilities })
+
+vim.lsp.config('lua_ls', {
   capabilities = capabilities,
   settings = {
     Lua = {
@@ -44,6 +35,20 @@ lspconfig.lua_ls.setup({
         enable = false,
       },
     },
+  },
+})
+
+require("mason").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = {
+    "lua_ls",
+    "ruby_lsp",
+    "rubocop",
+    "eslint",
+    "helm_ls",
+    "pyright",
+    "gopls",
+    "tailwindcss"
   },
 })
 
