@@ -7,9 +7,9 @@
 -- vim.cmd [[nnoremap <silent><expr><C-@> ":Copilot panel<CR>"]]
 
 -- copilot.lua
--- require("copilot").setup({
---   suggestion = { enabled = false },
---   panel = { enabled = false },
--- })
+require("copilot").setup({
+  suggestion = { enabled = false },
+  panel = { enabled = false },
+})
 
--- require("copilot_cmp").setup()
+require("copilot_cmp").setup()

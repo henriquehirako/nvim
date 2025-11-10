@@ -1,24 +1,24 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
     lazypath,
   })
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+require('lazy').setup({
   -- NVIM specific
   { 'nvim-telescope/telescope.nvim', tag = '0.1.3', dependencies = { 'nvim-lua/plenary.nvim' } },
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-  { "nvim-treesitter/playground" },
-  { "nvim-tree/nvim-tree.lua", version = "*", lazy = false, dependencies = { "nvim-tree/nvim-web-devicons" } },
-  { "akinsho/bufferline.nvim", version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
-  { "nvim-lualine/lualine.nvim", dependencies = { 'nvim-tree/nvim-web-devicons', opt = true } },
+  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+  { 'nvim-treesitter/playground' },
+  { 'nvim-tree/nvim-tree.lua', version = '*', lazy = false, dependencies = { 'nvim-tree/nvim-web-devicons' } },
+  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons'},
+  { 'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons', opt = true } },
 
   -- Quality of Life stuff
   'tpope/vim-sensible',   -- nice defaults to always have
@@ -35,8 +35,8 @@ require("lazy").setup({
   'tpope/vim-tbone',                -- lets you call tmux commands from vim
 
   -- Focus mode
-  { "shortcuts/no-neck-pain.nvim", version = "*" },
-  { "ecthelionvi/NeoColumn.nvim", opts = {} }, -- only change the background color of lines going over limit
+  { 'shortcuts/no-neck-pain.nvim', version = '*' },
+  { 'ecthelionvi/NeoColumn.nvim', opts = {} }, -- only change the background color of lines going over limit
 
   -- Languages and Frameworks support
   { 'tpope/vim-rails',     ft = 'ruby' },
@@ -57,7 +57,7 @@ require("lazy").setup({
   'hrsh7th/cmp-cmdline',
   'hrsh7th/cmp-nvim-lsp',
   'onsails/lspkind.nvim',
-  -- 'zbirenbaum/copilot-cmp',
+  'zbirenbaum/copilot-cmp',
 
   -- LSP
   'neovim/nvim-lspconfig',
@@ -68,14 +68,25 @@ require("lazy").setup({
   'dense-analysis/ale',
 
   -- COLORS
-  { "projekt0n/github-nvim-theme", lazy = false, priority = 1000 },
-  { "tinted-theming/base16-vim", },
-  { "jeffkreeftmeijer/vim-dim", },
+  { 'projekt0n/github-nvim-theme', lazy = false, priority = 1000 },
+  { 'tinted-theming/base16-vim', },
+  { 'jeffkreeftmeijer/vim-dim', },
 
   -- Miscellaneous
-  -- 'zbirenbaum/copilot.lua',
+  'zbirenbaum/copilot.lua',
 
   -- 'github/copilot.vim',
-  'Exafunction/codeium.vim'
+  {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    dependencies = {
+      { 'nvim-lua/plenary.nvim', branch = 'master' },
+    },
+    build = 'make tiktoken',
+    opts = {
+      -- See Configuration section for options
+    },
+  },
+
+-- 'Exafunction/codeium.vim'
 }, {})
 
