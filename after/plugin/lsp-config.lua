@@ -1,5 +1,9 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+vim.lsp.config('typecript-tools', {
+  capabilities = capabilities,
+})
+
 vim.lsp.config('ruby_lsp', {
   capabilities = capabilities,
   -- cmd_env = { BUNDLE_GEMFILE = vim.fn.getenv('GLOBAL_GEMFILE') },
@@ -44,11 +48,12 @@ require("mason-lspconfig").setup({
     "lua_ls",
     "ruby_lsp",
     "rubocop",
-    "eslint",
+    -- "eslint",
     "helm_ls",
     "pyright",
     "gopls",
-    "tailwindcss"
+    "tailwindcss",
+    -- "ts_ls",
   },
 })
 
@@ -105,7 +110,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, opts) -- overrides tagfunc
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'K', function()
+       vim.lsp.buf.hover {
+        border = "rounded",
+        max_height = 20,
+        max_width = 130,
+        close_events = { "CursorMoved", "BufLeave", "WinLeave", "LSPDetach" },
+      }
+    end, opts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
     -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
     vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
