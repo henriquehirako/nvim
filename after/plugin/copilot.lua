@@ -8,8 +8,17 @@
 
 -- copilot.lua
 require("copilot").setup({
-  suggestion = { enabled = false },
-  panel = { enabled = false },
+  suggestion = {
+    enabled = true,
+    auto_trigger = true,
+    keymap = {
+      accept = "<Tab>",
+    },
+  },
+  -- nes = { enabled = true },
+  panel = { enabled = true },
 })
 
 require("copilot_cmp").setup()
+--
+
