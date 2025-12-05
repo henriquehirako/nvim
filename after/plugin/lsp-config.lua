@@ -32,7 +32,7 @@ vim.lsp.config('lua_ls', {
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true), 
+        library = vim.api.nvim_get_runtime_file("", true),
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
@@ -53,7 +53,14 @@ require("mason-lspconfig").setup({
     "pyright",
     "gopls",
     "tailwindcss",
-    -- "ts_ls",
+    "ts_ls",
+  },
+  -- removes multiple lsp servers
+  automatic_enable = {
+    exclude = {
+      "lua_ls",
+      "ts_ls"
+    }
   },
 })
 
