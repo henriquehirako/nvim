@@ -5,5 +5,3 @@ require("NeoColumn").setup({
     markdown = "92"
   }
 })
-
--- asdasdad -- asdasdad -- asdasdad -- asdasdad -- asdasdad -- asdasdad -- asdasdad -- asdasdad -- asdasdad -- asdasdad -- asdasdad -- asdasdad -- asdasdad -- asdasdad -- asdasdad

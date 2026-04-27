@@ -47,7 +47,7 @@ vim.cmd [[let g:airline#extensions#ale#enabled = 1]]
 vim.cmd [[let g:ale_lint_on_insert_leave = 0]]
 -- " if you don't want linters to run on opening a file
 vim.cmd [[let g:ale_lint_on_enter = 1]]
-vim.cmd [[lef g:ale_lint_on_save = 1]]
+vim.cmd [[let g:ale_lint_on_save = 1]]
 
 vim.cmd [[let g:ale_echo_msg_format = '[%linter%] %code% - %s [%severity%]']]
 vim.cmd [[let g:ale_sign_error = '✘']]
