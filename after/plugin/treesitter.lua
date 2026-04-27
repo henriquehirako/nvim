@@ -1,32 +1,17 @@
-local status, ts = pcall(require, "nvim-treesitter.configs")
+local status, ts = pcall(require, "nvim-treesitter")
 if (not status) then return end
 
-ts.setup {
-  -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "lua", "vim", "markdown", "vimdoc", "query", "ruby", "javascript", "typescript", "tsx", "json" },
+-- nvim-treesitter main branch (Neovim 0.12+) API
+-- setup() only accepts install_dir now
+ts.setup {}
 
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = true,
+-- Install parsers (no-op if already installed)
+ts.install { "lua", "vim", "markdown", "vimdoc", "query", "ruby", "javascript", "typescript", "tsx", "json" }
 
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
-
-  highlight = {
-    enable = true,
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    -- additional_vim_regex_highlighting = true,
-    additional_vim_regex_highlighting = false,
-  },
-
-  autotag = {
-    enable = true,
-  }
-}
-
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
+-- Enable tree-sitter highlighting per filetype
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'lua', 'vim', 'markdown', 'vimdoc', 'query', 'ruby', 'javascript', 'typescript', 'tsx', 'json' },
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
