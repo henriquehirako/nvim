@@ -16,10 +16,7 @@ vim.cmd [[set number]]          -- Line numbers on
 vim.cmd [[set relativenumber]]  -- Relative line numbers
 vim.cmd [[set laststatus=2]]    -- Always show the statusline
 vim.cmd [[set cursorline]]      -- Highlight current line
-vim.cmd [[set encoding=UTF-8]]
 vim.cmd [[set title]]           -- Set the title of the window in the terminal to the file
-vim.cmd [[set ttyfast]]         -- higher refresh rate"
-vim.cmd [[set lazyredraw]]      -- buffer screen updates"
 vim.cmd [[set nowrap]]          -- Line wrapping off
 -- SET by neo-column.nvim instead
 -- vim.cmd [[set colorcolumn=120]] -- Color the 120th column differently as a wrapping guide.
@@ -28,7 +25,6 @@ vim.cmd [[set nowrap]]          -- Line wrapping off
 -- Behaviors
 ------------------
 vim.cmd [[syntax enable]]
-vim.cmd [[set re=1]]                  -- Using new and faster regex system (fix slow ruby)
 
 vim.cmd [[set backup]]                -- Turn on backups
 vim.cmd [[set autoread]]              -- Automatically reload changes if detected

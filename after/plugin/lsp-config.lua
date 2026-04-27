@@ -95,8 +95,8 @@ vim.api.nvim_create_autocmd('LspAttach',{
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1 }) end)
+vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1 }) end)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
 -- Use LspAttach autocommand to only map the following keys
@@ -105,8 +105,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
     -- disable syntax highlightling from lsp
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    client.server_capabilities.semanticTokensProvider = nil
+    local client = vim.lsp.get_clients({ id = ev.data.client_id })[1]
+    if client then client.server_capabilities.semanticTokensProvider = nil end
 
     -- Enable completion triggered by <c-x><c-o>
     vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
