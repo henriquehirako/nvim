@@ -51,11 +51,6 @@ require('lazy').setup({
     opts = {},
   },
 
-  -- LSP
-  'neovim/nvim-lspconfig',
-  'williamboman/mason.nvim',
-  'williamboman/mason-lspconfig.nvim',
-
   -- COLORS
   { 'projekt0n/github-nvim-theme', lazy = false, priority = 1000 },
   { 'tinted-theming/base16-vim', },
