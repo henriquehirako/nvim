@@ -14,3 +14,6 @@ vim.keymap.set("n", "<S-U>", "<C-R>")
 
 -- Toggle distraction free mode
 -- vim.cmd [[nnoremap <Leader>g :NoNeckPain <CR>]]
+
+-- Restore Y to yy (Neovim's default, and vim-sensible's, is y$)
+vim.keymap.set("n", "Y", "yy", { noremap = true })

@@ -13,61 +13,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
-  -- Migrated plugins live one-per-file in lua/plugins/, where the spec and its
-  -- configuration sit together. Entries below are still awaiting that move.
-  { import = 'plugins' },
-
-  -- NVIM specific
-  -- { 'nvim-treesitter/playground' }, -- replaced by :InspectTree in Neovim 0.12+
-
-  -- Quality of Life stuff
-  'tpope/vim-sensible',   -- nice defaults to always have
-  'tpope/vim-fugitive',   -- git wrapper
-  'tpope/vim-repeat',     -- improves `.` repeating
-  'tpope/vim-endwise',    -- automatically adds `end` to ruby methods
-  'tpope/vim-commentary', -- gcc comment line; gc[target]
-  'tpope/vim-surround',   -- [c]hange [s]urround
-  'tpope/vim-obsession',  -- saves session before exit
-  'tpope/vim-dispatch',   -- async job dispatcher
-
-  -- TMUX integration
-  'christoomey/vim-tmux-navigator', -- allow C-hjkl to navigate between tmux panes
-  'tpope/vim-tbone',                -- lets you call tmux commands from vim
-
-  -- Focus mode
-  { 'shortcuts/no-neck-pain.nvim', version = '*' },
-
-  -- Languages and Frameworks support
-  { 'tpope/vim-rails',     ft = 'ruby' },
-  { 'vim-ruby/vim-ruby',   ft = 'ruby' },
-  { 'noprompt/vim-yardoc', ft = 'ruby' },
-  { 'fatih/vim-go',        ft = 'go' },
-  { 'towolf/vim-helm' },
-  {
-    'pmizio/typescript-tools.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    opts = {},
-  },
-
-  -- COLORS
-  { 'projekt0n/github-nvim-theme', lazy = false, priority = 1000 },
-  { 'tinted-theming/base16-vim', },
-  { 'jeffkreeftmeijer/vim-dim', },
-
-
-  -- 'github/copilot.vim',
-  -- {
-  --   'CopilotC-Nvim/CopilotChat.nvim',
-  --   dependencies = {
-  --     { 'nvim-lua/plenary.nvim', branch = 'master' },
-  --   },
-  --   build = 'make tiktoken',
-  --   opts = {
-  --     -- See Configuration section for options
-  --   },
-  -- },
-
--- 'Exafunction/codeium.vim'
-}, {})
-
+-- Every plugin is declared in its own file under lua/plugins/, where its spec
+-- and its configuration sit together. Adding a plugin means adding a file
+-- there -- nothing needs to change here.
+require('lazy').setup('plugins')

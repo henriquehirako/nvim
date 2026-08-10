@@ -22,6 +22,10 @@ return {
     -- nvim-cmp's own config runs -- nvim-cmp lists this as a dependency.
     'zbirenbaum/copilot-cmp',
     dependencies = { 'zbirenbaum/copilot.lua' },
+    -- Reached through nvim-cmp's dependencies. Without this it is a top-level
+    -- spec with no lazy handler, which lazy.nvim treats as eager -- and its
+    -- config requires cmp, dragging the whole completion stack into startup.
+    lazy = true,
     config = function()
       -- copilot-cmp is archived and still calls the deprecated
       -- `client.is_stopped()` (dot call) on every completion evaluation, which
@@ -45,4 +49,15 @@ return {
       require('copilot_cmp').setup()
     end,
   },
+
+  -- Alternatives previously kept commented in lua/config/lazy.lua:
+  --
+  -- 'github/copilot.vim'      -- superseded by copilot.lua above
+  -- 'Exafunction/codeium.vim'
+  -- {
+  --   'CopilotC-Nvim/CopilotChat.nvim',
+  --   dependencies = { { 'nvim-lua/plenary.nvim', branch = 'master' } },
+  --   build = 'make tiktoken',
+  --   opts = {},
+  -- },
 }
