@@ -1,7 +1,8 @@
 vim.g.mapleader = ","
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("n", "<leader><leader>", vim.cmd.NvimTreeToggle)
+-- <leader><leader> (file tree toggle) is declared in lua/plugins/nvim-tree.lua
+-- so that pressing it is what loads the plugin.
 
 -- Buffers Navigation
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", { silent = true })

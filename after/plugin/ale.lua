@@ -33,6 +33,13 @@ vim.cmd [[
   \}
 ]]
 
+-- Only run the linters listed above. Without this, ALE runs every linter it can
+-- find for filetypes missing from the dict -- including language servers it
+-- starts itself. For lua that meant ALE spawning its own `lua-language-server`
+-- (via `/bin/zsh -c`, with no settings), which shadowed the lua_ls configured in
+-- lsp-config.lua and reported `Undefined global 'vim'` throughout this config.
+vim.cmd [[let g:ale_linters_explicit = 1]]
+
 --  Uncomment to run eslint_d global. Otherwise it will search on node_modules
 vim.cmd [[let g:ale_javascript_eslint_use_global = 1]]
 -- " let g:ale_javascript_eslint_executable = 'eslint_d'

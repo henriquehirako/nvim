@@ -14,13 +14,14 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
+  -- Migrated plugins live one-per-file in lua/plugins/, where the spec and its
+  -- configuration sit together. Entries below are still awaiting that move.
+  { import = 'plugins' },
+
   -- NVIM specific
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'nvim-treesitter/nvim-treesitter', branch = 'main', build = ':TSUpdate' },
   -- { 'nvim-treesitter/playground' }, -- replaced by :InspectTree in Neovim 0.12+
-  { 'nvim-tree/nvim-tree.lua', version = '*', lazy = false, dependencies = { 'nvim-tree/nvim-web-devicons' } },
-  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons'},
-  { 'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons', opt = true } },
 
   -- Quality of Life stuff
   'tpope/vim-sensible',   -- nice defaults to always have
@@ -38,7 +39,6 @@ require('lazy').setup({
 
   -- Focus mode
   { 'shortcuts/no-neck-pain.nvim', version = '*' },
-  { 'ecthelionvi/NeoColumn.nvim', opts = {} }, -- only change the background color of lines going over limit
 
   -- Languages and Frameworks support
   { 'tpope/vim-rails',     ft = 'ruby' },

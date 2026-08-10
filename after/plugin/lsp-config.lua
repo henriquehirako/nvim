@@ -55,10 +55,12 @@ require("mason-lspconfig").setup({
     "tailwindcss",
     "ts_ls",
   },
-  -- removes multiple lsp servers
+  -- Excluded servers are never enabled, so anything listed here must either be
+  -- started by another plugin or not wanted at all. ts_ls is handled by
+  -- typescript-tools.nvim; lua_ls is NOT excluded, otherwise the vim.lsp.config
+  -- block above never takes effect and nothing serves lua buffers.
   automatic_enable = {
     exclude = {
-      "lua_ls",
       "ts_ls"
     }
   },
