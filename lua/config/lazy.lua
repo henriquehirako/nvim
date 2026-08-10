@@ -51,15 +51,6 @@ require('lazy').setup({
     opts = {},
   },
 
-  -- cmp pluggins
-  'hrsh7th/nvim-cmp',
-  'hrsh7th/cmp-buffer',
-  'hrsh7th/cmp-path',
-  'hrsh7th/cmp-cmdline',
-  'hrsh7th/cmp-nvim-lsp',
-  'onsails/lspkind.nvim',
-  'zbirenbaum/copilot-cmp',
-
   -- LSP
   'neovim/nvim-lspconfig',
   'williamboman/mason.nvim',
@@ -70,13 +61,6 @@ require('lazy').setup({
   { 'tinted-theming/base16-vim', },
   { 'jeffkreeftmeijer/vim-dim', },
 
-  -- Miscellaneous
-  {
-    'zbirenbaum/copilot.lua',
-    dependencies = {
-      'copilotlsp-nvim/copilot-lsp'
-    },
-  }
 
   -- 'github/copilot.vim',
   -- {
