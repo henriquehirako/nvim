@@ -65,9 +65,6 @@ require('lazy').setup({
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
 
-  -- Linter
-  'dense-analysis/ale',
-
   -- COLORS
   { 'projekt0n/github-nvim-theme', lazy = false, priority = 1000 },
   { 'tinted-theming/base16-vim', },
