@@ -19,7 +19,6 @@ require('lazy').setup({
   { import = 'plugins' },
 
   -- NVIM specific
-  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'nvim-treesitter/nvim-treesitter', branch = 'main', build = ':TSUpdate' },
   -- { 'nvim-treesitter/playground' }, -- replaced by :InspectTree in Neovim 0.12+
 
