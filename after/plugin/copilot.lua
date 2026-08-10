@@ -19,6 +19,24 @@ require("copilot").setup({
   panel = { enabled = true },
 })
 
+-- copilot-cmp is archived and still calls the deprecated `client.is_stopped()`
+-- (dot call) on every completion evaluation, which spams the deprecation
+-- warning on nvim 0.11+. Override `is_available` to use the method form.
+-- Instances share this table via `__index`, so patching it here covers them all.
+local copilot_cmp_source = require("copilot_cmp.source")
+
+copilot_cmp_source.is_available = function(self)
+  local client = self.client
+  if not client or client:is_stopped() or client.name ~= "copilot" then
+    return false
+  end
+
+  return next(vim.lsp.get_clients({
+    bufnr = vim.api.nvim_get_current_buf(),
+    id = client.id,
+  })) ~= nil
+end
+
 require("copilot_cmp").setup()
 --
 
