@@ -19,7 +19,6 @@ require('lazy').setup({
   { import = 'plugins' },
 
   -- NVIM specific
-  { 'nvim-treesitter/nvim-treesitter', branch = 'main', build = ':TSUpdate' },
   -- { 'nvim-treesitter/playground' }, -- replaced by :InspectTree in Neovim 0.12+
 
   -- Quality of Life stuff
