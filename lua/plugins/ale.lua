@@ -8,9 +8,15 @@ return {
 
     g.ale_linter_aliases = { smarty = { 'yaml' } }
 
+    -- The react filetypes are distinct from their base language as far as ALE is
+    -- concerned: a .tsx buffer is `typescriptreact`, and without its own entry
+    -- here it gets no linters at all (see ale_linters_explicit below).
     g.ale_fixers = {
-      javascript = { 'eslint' },
-      typescript = { 'eslint' },
+      javascript = { 'eslint', 'prettier' },
+      javascriptreact = { 'eslint', 'prettier' },
+      typescript = { 'eslint', 'prettier' },
+      typescriptreact = { 'eslint', 'prettier' },
+      json = { 'prettier' },
       scss = { 'stylelint' },
       css = { 'stylelint' },
       go = { 'gofmt' },
@@ -21,7 +27,9 @@ return {
 
     g.ale_linters = {
       javascript = { 'eslint' },
+      javascriptreact = { 'eslint' },
       typescript = { 'eslint' },
+      typescriptreact = { 'eslint' },
       scss = { 'stylelint' },
       css = { 'stylelint' },
       go = { 'gofmt' },
@@ -44,8 +52,12 @@ return {
     g.ale_emit_conflict_warnings = 0
     g.ale_use_neovim_diagnostics_api = 1
 
-    -- Run eslint from PATH rather than searching node_modules.
-    g.ale_javascript_eslint_use_global = 1
+    -- Resolve eslint and prettier from the project's node_modules first, falling
+    -- back to PATH. This was previously forced to the global executable, and
+    -- since neither tool is installed globally here, JS/TS linting never ran at
+    -- all -- ALE silently found no executable and reported nothing.
+    g.ale_javascript_eslint_use_global = 0
+    g.ale_javascript_prettier_use_global = 0
 
     -- Ruby tooling runs through bundler so it matches the project's Gemfile.
     g.ale_ruby_rails_best_practices_executable = 'bundle'
@@ -53,6 +65,11 @@ return {
     g.ale_ruby_rubocop_executable = 'bundle'
 
     -- Lint on save and on open only -- never while typing.
+    --
+    -- fix_on_save stays globally off and is opted into per filetype below:
+    -- ale#Var() reads b:ale_fix_on_save before falling back to this. Turning it
+    -- on globally would apply every configured fixer on every write, so saving
+    -- a Ruby file would silently run `rubocop --auto-correct` over it.
     g.ale_fix_on_save = 0
     g.ale_lint_on_text_changed = 'never'
     g.ale_lint_on_insert_leave = 0
@@ -63,5 +80,23 @@ return {
     g.ale_echo_msg_format = '[%linter%] %code% - %s [%severity%]'
     g.ale_sign_error = '✘'
     g.ale_sign_warning = '⚠'
+
+    -- Run the fixers above on save, for the web filetypes only -- prettier for
+    -- js/ts/json, stylelint for css/scss. Everything else keeps save read-only.
+    vim.api.nvim_create_autocmd('FileType', {
+      group = vim.api.nvim_create_augroup('AleFixOnSave', { clear = true }),
+      pattern = {
+        'javascript',
+        'javascriptreact',
+        'typescript',
+        'typescriptreact',
+        'json',
+        'css',
+        'scss',
+      },
+      callback = function(ev)
+        vim.b[ev.buf].ale_fix_on_save = 1
+      end,
+    })
   end,
 }

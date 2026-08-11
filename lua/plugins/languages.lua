@@ -5,12 +5,8 @@ return {
   { 'fatih/vim-go',        ft = 'go' },
   { 'towolf/vim-helm',     ft = { 'helm', 'yaml' } },
 
-  {
-    -- Drives TypeScript instead of ts_ls, which is excluded from
-    -- mason-lspconfig's automatic_enable in lsp.lua for that reason.
-    'pmizio/typescript-tools.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
-    opts = {},
-  },
+  -- TypeScript has no plugin here on purpose: typescript-tools.nvim and ts_ls
+  -- are both tsserver.js wrappers, and TypeScript 7 (the Go port) does not ship
+  -- tsserver.js. The native binary speaks LSP directly, so it is configured as
+  -- the `tsgo` server in lua/plugins/lsp.lua with no plugin in between.
 }

@@ -9,7 +9,10 @@ return {
         enabled = true,
         auto_trigger = true,
         keymap = {
-          accept = '<Tab>',
+          -- <Tab> is arbitrated by nvim-cmp instead: with both a completion
+          -- menu and ghost text on screen, one mapping has to decide which of
+          -- the two a keypress means. See lua/plugins/nvim-cmp.lua.
+          accept = false,
         },
       },
       -- nes = { enabled = true }, -- next-edit suggestions
