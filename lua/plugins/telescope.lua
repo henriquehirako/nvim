@@ -10,7 +10,8 @@ end
 
 return {
   'nvim-telescope/telescope.nvim',
-  branch = '0.1.x',
+  -- 0.1.x calls nvim-treesitter's removed `ft_to_lang`; 0.2+ uses core vim.treesitter.
+  version = '*',
   dependencies = { 'nvim-lua/plenary.nvim' },
   cmd = 'Telescope',
   keys = {
