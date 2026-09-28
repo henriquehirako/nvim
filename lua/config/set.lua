@@ -125,3 +125,12 @@ vim.cmd [[filetype plugin on]]    -- Enable filetype-specific plugins
 vim.cmd [[autocmd Filetype ruby setlocal ts=2 sw=2 expandtab]]
 -- vim.cmd [[autocmd Filetype markdown setlocal colorcolumn=92]] -- Github limit
 vim.cmd [[autocmd BufReadPost *.yaml.tpl set syntax=yaml]]
+
+------------------
+-- Providers
+------------------
+-- No plugin here is written in Python/Node/Ruby/Perl, so skip their hosts.
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
