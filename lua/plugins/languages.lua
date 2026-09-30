@@ -2,7 +2,6 @@ return {
   { 'tpope/vim-rails',     ft = 'ruby' },
   { 'vim-ruby/vim-ruby',   ft = 'ruby' },
   { 'noprompt/vim-yardoc', ft = 'ruby' },
-  { 'fatih/vim-go',        ft = 'go' },
   { 'towolf/vim-helm',     ft = { 'helm', 'yaml' } },
 
   -- TypeScript has no plugin here on purpose: typescript-tools.nvim and ts_ls

@@ -12,6 +12,7 @@ local parsers = {
   'markdown',
   'markdown_inline',
   'ruby',
+  'go',
   'javascript',
   'typescript',
   'tsx',
