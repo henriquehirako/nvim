@@ -16,62 +16,6 @@ return {
       capabilities = require('cmp_nvim_lsp').default_capabilities(),
     })
 
-    -- TypeScript 7 is the Go port of the compiler: there is no tsserver.js any
-    -- more, so the tsserver wrappers (ts_ls, typescript-tools.nvim) cannot drive
-    -- a project's own TypeScript -- they fall back to a bundled 5.x, which makes
-    -- editor diagnostics drift from what `tsc` reports. The native binary speaks
-    -- LSP directly over stdio instead.
-    --
-    -- It ships under two names: `tsgo` from @typescript/native-preview, and
-    -- `tsc` from typescript@7 itself. nvim-lspconfig's tsgo config only looks for
-    -- `tsgo`, so resolve the binary here. A `tsc` is accepted only once it has
-    -- reported major version >= 7, so a leftover TypeScript 5 on PATH -- which
-    -- has no --lsp flag -- is never picked up.
-    local speaks_lsp = {}
-
-    local function is_typescript_7(exe)
-      if speaks_lsp[exe] == nil then
-        local version = vim.fn.system({ exe, '--version' })
-        local major = tonumber(version:match('Version (%d+)') or '')
-        speaks_lsp[exe] = vim.v.shell_error == 0 and major ~= nil and major >= 7
-      end
-      return speaks_lsp[exe]
-    end
-
-    local function resolve_tsgo(root_dir)
-      for _, name in ipairs({ 'tsgo', 'tsc' }) do
-        local candidates = {}
-        if root_dir then
-          candidates[#candidates + 1] = vim.fs.joinpath(root_dir, 'node_modules', '.bin', name)
-        end
-        candidates[#candidates + 1] = name
-
-        for _, exe in ipairs(candidates) do
-          -- `tsgo` is always the native server; `tsc` has to earn it.
-          if vim.fn.executable(exe) == 1 and (name == 'tsgo' or is_typescript_7(exe)) then
-            return exe
-          end
-        end
-      end
-    end
-
-    -- Only the cmd is overridden -- the upstream config's root_dir carries the
-    -- monorepo and Deno-detection logic, and its settings enable inlay hints.
-    vim.lsp.config('tsgo', {
-      cmd = function(dispatchers, config)
-        local exe = resolve_tsgo((config or {}).root_dir)
-        if not exe then
-          vim.notify(
-            '[lsp] no TypeScript 7 binary found (tsgo, or tsc >= 7)',
-            vim.log.levels.WARN
-          )
-          exe = 'tsgo' -- fail loudly in :LspLog rather than silently not attaching
-        end
-        return vim.lsp.rpc.start({ exe, '--lsp', '--stdio' }, dispatchers)
-      end,
-    })
-    vim.lsp.enable('tsgo')
-
     vim.lsp.config('ruby_lsp', {
       -- cmd_env = { BUNDLE_GEMFILE = vim.fn.getenv('GLOBAL_GEMFILE') },
       cmd = { vim.fn.expand('~/.rbenv/shims/ruby-lsp') },
@@ -116,10 +60,14 @@ return {
         'pyright',
         'gopls',
         'tailwindcss',
+        -- TypeScript 7 serves LSP natively. nvim-lspconfig's tsc config prefers
+        -- the project's own node_modules/.bin/tsc (>= 7); this copy is the
+        -- fallback for projects without one.
+        'tsc',
       },
       -- Excluded servers are never enabled, so anything listed here must either
       -- be started by another plugin or not wanted at all. ts_ls wraps
-      -- tsserver.js, which TypeScript 7 no longer ships -- tsgo above serves
+      -- tsserver.js, which TypeScript 7 no longer ships -- tsc serves
       -- TypeScript instead, so ts_ls stays excluded in case an older Mason
       -- install of it is still on disk. lua_ls is NOT excluded, otherwise the
       -- vim.lsp.config block above never takes effect and nothing serves lua
@@ -195,7 +143,7 @@ return {
         local client = vim.lsp.get_clients({ id = ev.data.client_id })[1]
         if client then client.server_capabilities.semanticTokensProvider = nil end
 
-        -- Inferred parameter/return/variable types shown inline. tsgo's upstream
+        -- Inferred parameter/return/variable types shown inline. tsc's upstream
         -- config already narrows which hints it emits; <space>ih toggles them
         -- per-buffer when they get in the way.
         if client and client:supports_method('textDocument/inlayHint') then

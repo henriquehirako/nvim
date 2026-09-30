@@ -7,6 +7,6 @@ return {
 
   -- TypeScript has no plugin here on purpose: typescript-tools.nvim and ts_ls
   -- are both tsserver.js wrappers, and TypeScript 7 (the Go port) does not ship
-  -- tsserver.js. The native binary speaks LSP directly, so it is configured as
-  -- the `tsgo` server in lua/plugins/lsp.lua with no plugin in between.
+  -- tsserver.js. The native `tsc` speaks LSP directly, so nvim-lspconfig's
+  -- stock `tsc` config serves it (see lua/plugins/lsp.lua).
 }
