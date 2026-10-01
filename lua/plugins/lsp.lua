@@ -48,6 +48,19 @@ return {
       },
     })
 
+    -- Merges into nvim-lspconfig's stock lsp/tsc.lua, so cmd/root_dir and the
+    -- other hints stay. Parameter type hints spell out whole inferred callback
+    -- contexts (e.g. react-query's queryFn) and crowd the line.
+    vim.lsp.config('tsc', {
+      settings = {
+        ['js/ts'] = {
+          inlayHints = {
+            parameterTypes = { enabled = false },
+          },
+        },
+      },
+    })
+
     -- mason.nvim is set up by its own spec above (opts = {}), which lazy.nvim
     -- runs before this config -- mason_lspconfig requires it already set up.
     require('mason-lspconfig').setup({
